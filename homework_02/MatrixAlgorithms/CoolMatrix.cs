@@ -7,6 +7,8 @@ namespace MatrixAlgorithms
     {
         private readonly int[,] _mMatrix;
 
+        private delegate int OperationDelegate(int first, int second);
+
         public Size Size{ get; }
 
         public bool IsSquare { get; }
@@ -27,6 +29,36 @@ namespace MatrixAlgorithms
                 }
             }
             IsSquare = Size.IsSquare;
+        }
+
+        private static CoolMatrix PerformOperation(CoolMatrix leftMatrix, CoolMatrix rightMatrix, OperationDelegate operationDelegate)
+        {
+            if (leftMatrix.Size != rightMatrix.Size) throw new ArgumentException();
+
+            var tempMatrix = new CoolMatrix(leftMatrix);
+
+            for (var i = 0; i < leftMatrix.Size.Width; i++)
+            {
+                for (var j = 0; j < leftMatrix.Size.Height; j++)
+                {
+                    tempMatrix[i, j] = operationDelegate(leftMatrix[i, j], rightMatrix[i, j]);
+                }
+            }
+            return tempMatrix;
+        }
+
+        private static CoolMatrix PerformOperation(CoolMatrix matrix, int number, OperationDelegate operationDelegate)
+        {
+            var tempMatrix = new CoolMatrix(matrix);
+
+            for (var i = 0; i < matrix.Size.Width; i++)
+            {
+                for (var j = 0; j < matrix.Size.Height; j++)
+                {
+                    tempMatrix[i, j] = operationDelegate(matrix[i, j], number);
+                }
+            }
+            return tempMatrix;
         }
 
         public int this[int x, int y]
@@ -70,62 +102,22 @@ namespace MatrixAlgorithms
 
         public static CoolMatrix operator +(CoolMatrix leftMatrix, CoolMatrix rightMatrix)
         {
-            if (leftMatrix.Size != rightMatrix.Size) throw new ArgumentException();
-
-            var tempMatrix = new CoolMatrix(leftMatrix);
-
-            for (var i = 0; i < leftMatrix.Size.Width; i++)
-            {
-                for (var j = 0; j < leftMatrix.Size.Height; j++)
-                {
-                    tempMatrix[i, j] += rightMatrix[i, j];
-                }
-            }
-            return tempMatrix;
+            return PerformOperation(leftMatrix, rightMatrix, (first, second) => first + second);
         }
 
         public static CoolMatrix operator -(CoolMatrix leftMatrix, CoolMatrix rightMatrix)
         {
-            if (leftMatrix.Size != rightMatrix.Size) throw new ArgumentException();
-
-            var tempMatrix = new CoolMatrix(leftMatrix);
-
-            for (var i = 0; i < leftMatrix.Size.Width; i++)
-            {
-                for (var j = 0; j < leftMatrix.Size.Height; j++)
-                {
-                    tempMatrix[i, j] -= rightMatrix[i, j];
-                }
-            }
-            return tempMatrix;
+            return PerformOperation(leftMatrix, rightMatrix, (first, second) => first - second);
         }
 
         public static CoolMatrix operator *(CoolMatrix matrix, int number)
         {
-            var tempMatrix = new CoolMatrix(matrix);
-
-            for (var i = 0; i < matrix.Size.Width; i++)
-            {
-                for (var j = 0; j < matrix.Size.Height; j++)
-                {
-                    tempMatrix[i, j] *= number;
-                }
-            }
-            return tempMatrix;
+            return PerformOperation(matrix, number, ((first, second) => first*second));
         }
 
         public static CoolMatrix operator /(CoolMatrix matrix, int number)
         {
-            var tempMatrix = new CoolMatrix(matrix);
-
-            for (var i = 0; i < matrix.Size.Width; i++)
-            {
-                for (var j = 0; j < matrix.Size.Height; j++)
-                {
-                    tempMatrix[i, j] /= number;
-                }
-            }
-            return tempMatrix;
+            return PerformOperation(matrix, number, ((first, second) => first / second));
         }
 
         public static bool operator ==(CoolMatrix leftMatrix, CoolMatrix rightMatrix)
