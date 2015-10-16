@@ -1,31 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using NUnit.Framework;
 using OOP.Shapes;
 using FluentAssertions;
+using OOP.Shapes.Triangles;
 
 namespace OOP.Tests
 {
 	[TestFixture]
     public class GeneralTests
 	{
-	    private const double Radius = 5d;
-	    private const double Edge1 = 3d;
-	    private const double Edge2 = 4d;
-	    private const double Edge3 = 5d;
-	    private const int CoordX = 0;
-	    private const int CoordY = 0;
-	    private const int Multiplier = 3;
+	    private const double RADIUS = 5d;
+	    private const double EDGE1 = 3d;
+	    private const double EDGE2 = 4d;
+	    private const double EDGE3 = 5d;
+        private const double HYPOTENUSE = 5d;
+        private const int COORD_X = 0;
+	    private const int COORD_Y = 0;
+	    private const int MULTIPLIER = 3;
 
         [Test, Sequential]
         public void ShapeShouldBeMoved([Values(
             typeof(Circle)
             // TODO: UNCOMMENT WHEN IMPLEMENTED ALL SHAPES
-            //,typeof(Rectangle)
-            //,typeof(Triangle)
-            //,typeof(EquilateralTriangle)
-            //,typeof(RightTriangle)
+            ,typeof(Rectangle)
+            ,typeof(Triangle)
+            ,typeof(EquilateralTriangle)
+            ,typeof(RightTriangle)
             )] Type targetType)
         {
             // declare
@@ -44,15 +45,15 @@ namespace OOP.Tests
         public void AreaShouldBeCalculated([Values(
             typeof(Circle)
             // TODO: UNCOMMENT WHEN IMPLEMENTED ALL SHAPES
-            //,typeof(Rectangle)
-            //,typeof(Triangle)
-            //,typeof(RightTriangle)
+            ,typeof(Rectangle)
+            ,typeof(Triangle)
+            ,typeof(RightTriangle)
             )] Type targetType,
-            [Values(Radius * Radius * Math.PI
+            [Values(RADIUS * RADIUS * Math.PI
             // TODO: UNCOMMENT WHEN IMPLEMENTED ALL SHAPES
-            //,Edge1 * Edge2
-            //,6d
-            //,6d
+            ,EDGE1 * EDGE2
+            ,6d
+            ,6d
             )] double area)
         {
             // declare
@@ -68,17 +69,17 @@ namespace OOP.Tests
         public void PerimeterShouldBeCalculated([Values(
             typeof(Circle)
             // TODO: UNCOMMENT WHEN IMPLEMENTED ALL SHAPES
-            //,typeof(Rectangle)
-            //,typeof(Triangle)
-            //,typeof(EquilateralTriangle)
-            //,typeof(RightTriangle)
+            ,typeof(Rectangle)
+            ,typeof(Triangle)
+            ,typeof(EquilateralTriangle)
+            ,typeof(RightTriangle)
             )] Type targetType,
-            [Values(2 * Radius * Math.PI
+            [Values(2 * RADIUS * Math.PI
             // TODO: UNCOMMENT WHEN IMPLEMENTED ALL SHAPES
-            //,2*(Edge1 + Edge2)
-            //,Edge1 + Edge2 + Edge3
-            //,Edge1 + Edge2 + Edge3
-            //,Edge1 + Edge2 + Edge3
+            ,2*(EDGE1 + EDGE2)
+            ,EDGE1 + EDGE2 + EDGE3
+            ,EDGE1 * 3
+            ,EDGE1 + EDGE2 + HYPOTENUSE
             )] double perimeter)
         {
             // declare
@@ -94,23 +95,23 @@ namespace OOP.Tests
         public void PerimeterShouldBeCalculatedWithMultiplier([Values(
             typeof(Circle)
             // TODO: UNCOMMENT WHEN IMPLEMENTED ALL SHAPES
-            //,typeof(Rectangle)
-            //,typeof(Triangle)
-            //,typeof(EquilateralTriangle)
-            //,typeof(RightTriangle)
+            ,typeof(Rectangle)
+            ,typeof(Triangle)
+            ,typeof(EquilateralTriangle)
+            ,typeof(RightTriangle)
             )] Type targetType,
-            [Values(2 * Radius * Math.PI
+            [Values(2 * RADIUS * Math.PI * MULTIPLIER
             // TODO: UNCOMMENT WHEN IMPLEMENTED ALL SHAPES
-            //,2*(Edge1 + Edge2) * Multiplier
-            //,(Edge1 + Edge2 + Edge3) * Multiplier
-            //,(Edge1 + Edge2 + Edge3) * Multiplier
-            //,(Edge1 + Edge2 + Edge3)* Multiplier
+            ,2*(EDGE1 + EDGE2) * MULTIPLIER
+            ,(EDGE1 + EDGE2 + EDGE3) * MULTIPLIER
+            ,(EDGE1 * 3) * MULTIPLIER
+            ,(EDGE1 + EDGE2 + HYPOTENUSE)* MULTIPLIER
             )] double perimeter)
         {
             // declare
             var @params = GetParams();
             var target = GetShape(targetType, @params);
-            target.Multiplier = Multiplier;
+            target.Multiplier = MULTIPLIER;
             // act 
             var actualPerimeter = target.GetPerimeter();
             // assert
@@ -121,17 +122,17 @@ namespace OOP.Tests
         public void ShouldReturnValidShapeName([Values(
             typeof(Circle)
             // TODO: UNCOMMENT WHEN IMPLEMENTED ALL SHAPES
-            //,typeof(Rectangle)
-            //,typeof(Triangle)
-            //,typeof(EquilateralTriangle)
-            //,typeof(RightTriangle)
+            ,typeof(Rectangle)
+            ,typeof(Triangle)
+            ,typeof(EquilateralTriangle)
+            ,typeof(RightTriangle)
             )] Type targetType,
             [Values("Circle"
             // TODO: UNCOMMENT WHEN IMPLEMENTED ALL SHAPES
-            //, "Rectangle"
-            //,"Triangle"
-            //,"EquilateralTriangle"
-            //,"RightTriangle"
+            , "Rectangle"
+            ,"Triangle"
+            ,"EquilateralTriangle"
+            ,"RightTriangle"
             )] string shapeName)
         {
             // declare
@@ -153,12 +154,12 @@ namespace OOP.Tests
 	    {
 	        return new Dictionary<ParamKeys, object>
 	        {
-	            [ParamKeys.CoordX] = CoordX,
-	            [ParamKeys.CoordY] = CoordY,
-	            [ParamKeys.Edge1] = Edge1,
-	            [ParamKeys.Edge2] = Edge2,
-	            [ParamKeys.Edge3] = Edge3,
-	            [ParamKeys.Radius] = Radius,
+	            [ParamKeys.CoordX] = COORD_X,
+	            [ParamKeys.CoordY] = COORD_Y,
+	            [ParamKeys.Edge1] = EDGE1,
+	            [ParamKeys.Edge2] = EDGE2,
+	            [ParamKeys.Edge3] = EDGE3,
+	            [ParamKeys.Radius] = RADIUS,
 	        };
 	    }
     }

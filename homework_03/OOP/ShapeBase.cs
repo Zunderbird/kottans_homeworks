@@ -24,7 +24,7 @@ namespace OOP
         public abstract string ShapeName { get; }
         public int CoordX { get; protected set; }
         public int CoordY { get; protected set; }
-        public byte Multiplier { get; set; }
+	    public byte Multiplier { get; set; } = 1;
 
 		public abstract double GetPerimeter();
 		protected abstract double Area();

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using NUnit.Framework;
 using OOP.Shapes;
 using FluentAssertions;
@@ -38,7 +37,7 @@ namespace OOP.Tests
             // act 
             var info = circle.ToString();
             // assert
-            info.Should().Be($"Shape information: Name : {"Circle"}, X : {0}, Y : {0}, Perimeter : {multiplier*2*radius*Math.PI}, Square : {multiplier*radius*radius*Math.PI}");
+            info.Should().Be($"Shape information: Name : {"Circle"}, X : {0}, Y : {0}, Perimeter : {multiplier*2*radius*Math.PI}, Square : {multiplier * multiplier * radius * radius * Math.PI}");
         }
     }
 }
