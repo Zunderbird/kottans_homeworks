@@ -39,11 +39,11 @@ namespace Battleship.Tests
         //    }, message: "Ship A1x1- overlaps with A1x1-");
         //}
 
-        //[TestCase(11, 1, Direction.Horizontal)]
-        //[TestCase(9, 1, Direction.Horizontal)]
-        //[TestCase(1, 11, Direction.Horizontal)]
-        //[TestCase(1, 9, Direction.Vertiacal)]
-        //public void ThrowsArgumentOutOfRangeException_WhenShipIsOutOfBoard(byte x, byte y, Direction direction)
+        //[TestCase(11, 1, DirectionInShip.Horizontal)]
+        //[TestCase(9, 1, DirectionInShip.Horizontal)]
+        //[TestCase(1, 11, DirectionInShip.Horizontal)]
+        //[TestCase(1, 9, DirectionInShip.Vertical)]
+        //public void ThrowsArgumentOutOfRangeException_WhenShipIsOutOfBoard(byte x, byte y, DirectionInShip direction)
         //{
         //    Assert.Throws<ArgumentOutOfRangeException>(() =>
         //    {
