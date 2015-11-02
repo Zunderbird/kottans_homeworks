@@ -8,7 +8,7 @@ namespace OOP.Shapes.Triangles
     /// </summary>
     public class EquilateralTriangle : Triangle
     {
-        public override string ShapeName { get; }
+        public override string ShapeName => "EquilateralTriangle";
 
         public EquilateralTriangle(double edge1)
             : this(new Dictionary<ParamKeys, object>
@@ -24,7 +24,6 @@ namespace OOP.Shapes.Triangles
 
         public EquilateralTriangle(IDictionary<ParamKeys, object> parameters) : base(parameters)
         {
-            ShapeName = "EquilateralTriangle";
         }
 
         public override double GetPerimeter()

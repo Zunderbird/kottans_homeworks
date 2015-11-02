@@ -10,7 +10,7 @@ namespace OOP.Shapes
 
 	    public double Radius { get { return _radius*Multiplier; } }
 
-	    public override string ShapeName { get; }
+	    public override string ShapeName => "Circle";
 
         public Circle(double radius)
             : this(new Dictionary<ParamKeys, object>
@@ -24,8 +24,7 @@ namespace OOP.Shapes
 
 		public Circle(IDictionary<ParamKeys, object> parameters) : base(parameters)
 		{
-            _radius = (double) parameters[ParamKeys.Radius];
-            ShapeName = "Circle";
+            _radius = (double) parameters[ParamKeys.Radius];          
         }     
 
         public override double GetPerimeter()

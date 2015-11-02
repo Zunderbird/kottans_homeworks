@@ -10,7 +10,7 @@ namespace OOP.Shapes
         public double Edge1 { get { return _edge1 * Multiplier; } }
         public double Edge2 { get { return _edge2 * Multiplier; } }
 
-        public override string ShapeName { get; }
+        public override string ShapeName => "Rectangle";
 
         public Rectangle(double edge1, double edge2)
             : this(new Dictionary<ParamKeys, object>
@@ -27,7 +27,6 @@ namespace OOP.Shapes
         {
             _edge1 = (double)parameters[ParamKeys.Edge1];
             _edge2 = (double)parameters[ParamKeys.Edge2];
-            ShapeName = "Rectangle";
         }
 
         public override double GetPerimeter()

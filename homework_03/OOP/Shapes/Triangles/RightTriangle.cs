@@ -8,7 +8,7 @@ namespace OOP.Shapes.Triangles
     /// </summary>
     public class RightTriangle : Triangle
     {
-        public override string ShapeName { get; }
+        public override string ShapeName => "RightTriangle";
 
         public RightTriangle(double edge1, double edge2)
             : this(new Dictionary<ParamKeys, object>
@@ -25,7 +25,6 @@ namespace OOP.Shapes.Triangles
 
         public RightTriangle(IDictionary<ParamKeys, object> parameters) : base(parameters)
         {
-            ShapeName = "RightTriangle";
         }
 
         protected override double Area()
