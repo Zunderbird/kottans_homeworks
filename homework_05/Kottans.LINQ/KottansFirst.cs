@@ -3,22 +3,21 @@ using System.Collections.Generic;
 
 namespace Kottans.LINQ
 {
-    public static class KottansFirstOrDefault
+    public static class KottansFirst
     {
-        public static TSourse FirstOrDefault<TSourse>(this IEnumerable<TSourse> source)
+        public static TSource First<TSource>(this IEnumerable<TSource> source)
         {
-            return source.FirstOrDefault(n => true);
+            return source.First(n => n != null);
         }
 
-        public static TSourse FirstOrDefault<TSourse>(this IEnumerable<TSourse> source, Func<TSourse, bool> predicate)
+        public static TSource First<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
             if (source == null || predicate == null) throw new ArgumentNullException();
-
             foreach (var element in source)
             {
                 if (predicate(element)) return element;
             }
-            return default(TSourse);
+            throw new InvalidOperationException();
         }
     }
 }

@@ -7,17 +7,7 @@ namespace Kottans.LINQ
     {
         public static int Count<TSource>(this IEnumerable<TSource> source)
         {
-            if (source == null) throw new ArgumentNullException();
-
-            var count = 0;
-
-            foreach (var element in source)
-            {
-                if (count == int.MaxValue) throw new OverflowException();
-                count++;
-            }
-
-            return count;
+            return source.Count(n => true);
         }
 
         public static int Count<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
@@ -26,11 +16,7 @@ namespace Kottans.LINQ
 
             var count = 0;
 
-            foreach (var element in source)
-            {
-                if (count == int.MaxValue) throw new OverflowException();
-                if (predicate(element)) count++;
-            }
+            checked { foreach (var element in source) if (predicate(element)) count++; }
 
             return count;
         }
