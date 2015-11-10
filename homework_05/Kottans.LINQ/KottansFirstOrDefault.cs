@@ -5,20 +5,18 @@ namespace Kottans.LINQ
 {
     public static class KottansFirstOrDefault
     {
-        public static TSourse FirstOrDefault<TSourse>(this IEnumerable<TSourse> source)
+        public static TSource FirstOrDefault<TSource>(this IEnumerable<TSource> source)
         {
             return source.FirstOrDefault(n => true);
         }
 
-        public static TSourse FirstOrDefault<TSourse>(this IEnumerable<TSourse> source, Func<TSourse, bool> predicate)
+        public static TSource FirstOrDefault<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
             if (source == null || predicate == null) throw new ArgumentNullException();
 
-            foreach (var element in source)
-            {
-                if (predicate(element)) return element;
-            }
-            return default(TSourse);
+            TSource first;
+            source.TryGetFirst(predicate, out first);
+            return first;
         }
     }
 }

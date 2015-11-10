@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using Kottans.LINQ.Tests.Helpers;
 using NUnit.Framework;
 
@@ -131,7 +131,7 @@ namespace Kottans.LINQ.Tests
         }
 
         [Test]
-        [Ignore("LINQ to Objects doesn't optimize by count")]
+        //[Ignore("LINQ to Objects doesn't optimize by count")]
         public void CountOptimization()
         {
             // The counts are different, so we don't need to iterate

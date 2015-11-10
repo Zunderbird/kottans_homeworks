@@ -7,16 +7,14 @@ namespace Kottans.LINQ
     {
         public static TSource First<TSource>(this IEnumerable<TSource> source)
         {
-            return source.First(n => n != null);
+            return source.First(n => true);
         }
 
         public static TSource First<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
             if (source == null || predicate == null) throw new ArgumentNullException();
-            foreach (var element in source)
-            {
-                if (predicate(element)) return element;
-            }
+            TSource first;
+            if (source.TryGetFirst(predicate, out first)) return first;
             throw new InvalidOperationException();
         }
     }

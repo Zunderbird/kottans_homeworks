@@ -17,7 +17,7 @@ namespace Kottans.LINQ
             return DistinctIterator(source, comparer);
         }
 
-        public static IEnumerable<TSource> DistinctIterator<TSource>(IEnumerable<TSource> source,
+        private static IEnumerable<TSource> DistinctIterator<TSource>(IEnumerable<TSource> source,
             IEqualityComparer<TSource> comparer)
         {
             var distincts = new HashSet<TSource>(comparer);
@@ -25,6 +25,6 @@ namespace Kottans.LINQ
             {
                 if (distincts.Add(element)) yield return element;
             }
-        }
+        }      
     }
 }
