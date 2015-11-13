@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Grouping.cs" />
     <Compile Include="KottansAll.cs" />
     <Compile Include="KottansAny.cs" />
     <Compile Include="KottansConcat.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="KottansEmpty.cs" />
     <Compile Include="KottansFirst.cs" />
     <Compile Include="KottansFirstOrDefault.cs" />
+    <Compile Include="KottansGroupBy.cs" />
     <Compile Include="KottansLast.cs" />
     <Compile Include="KottansLastOrDefault.cs" />
     <Compile Include="KottansRange.cs" />
