@@ -50,6 +50,7 @@
     <Compile Include="KottansFirst.cs" />
     <Compile Include="KottansFirstOrDefault.cs" />
     <Compile Include="KottansGroupBy.cs" />
+    <Compile Include="KottansJoin.cs" />
     <Compile Include="KottansLast.cs" />
     <Compile Include="KottansLastOrDefault.cs" />
     <Compile Include="KottansRange.cs" />
